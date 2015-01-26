@@ -37,5 +37,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "razorscript": "0.0.6"
+  }
 }
