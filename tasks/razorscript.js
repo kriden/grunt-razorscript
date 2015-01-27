@@ -14,6 +14,7 @@ module.exports = function (grunt) {
         // modelRegex
         var modelRegex = /\@\*(.*)model=([a-zA-Z]+)(.*)\*\@/
         var modelsUsed = {};        // model objects listed in models.json
+        var defaults,helpers;
 
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
@@ -22,6 +23,7 @@ module.exports = function (grunt) {
             helpers: 'assets/helpers.html'
         });
 
+        // Load all optional files (models, defaults, helpers)
         if (grunt.file.exists(options.models)) {
             modelsUsed = grunt.file.readJSON(options.models);
             grunt.log.ok('Loaded models file');
@@ -29,12 +31,20 @@ module.exports = function (grunt) {
             grunt.log.warn('No models file found, please supply one...');
         }
 
+        if(grunt.file.exists(options.defaults)) {
+            defaults = grunt.file.read(options.defaults);
+        }
+
+        if(grunt.file.exists(options.helpers)) {
+            helpers = grunt.file.read(options.helpers);
+        }
+
+        // Process files
         this.files.forEach(function (file) {
             var src = file.src;
-            var dest = file.dest;
             grunt.log.ok('Processing '+src[0]);
 
-            // fetch model from razor comment
+            // Fetch model from razor comment
             var contents = grunt.file.read(file.src[0]);
             var matches = modelRegex.exec(contents);
             if (matches !== null) {
@@ -45,19 +55,13 @@ module.exports = function (grunt) {
                 var model = {};
             }
 
-            // prefix file with template defaults
-            grunt.log.ok('Enriching '+file.src[0]);
-            var defaults = grunt.file.read(options.defaults);
-            var helpers = grunt.file.read(options.helpers);
+            // Merge all into one file for processing
             var tmpContent = defaults+contents+helpers;
             var tmpFile = 'tmp/'+file.src
-            // write content to tmp folder
             grunt.file.write(tmpFile, tmpContent);
 
-            grunt.log.ok('Rendering '+tmpFile);
-
-
             // Rendering razor template
+            grunt.log.ok('Rendering '+tmpFile);
             var razor = require('razorscript');
             var viewEngine = new razor.ViewEngine();
             var destContent = viewEngine.renderView(tmpFile, model);
