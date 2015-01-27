@@ -1,17 +1,21 @@
 {
-  "testNewsItem": {
-    "Package": {
-      "something": "something dark side"
+    "testNewsItem": {
+        "Package": {
+            "something": "something dark side"
+        },
+        "Fields": {
+            "title": "A testy title",
+            "description": "Some kind of lorem ipsum variation"
+        }
     },
-    "title": "A testy title",
-    "description": "Some kind of lorem ipsum variation"
-  },
-  "blogPost": {
-    "Package": {
+    "blogPost": {
+        "Package": {
 
-    },
-    "title": "A blog post test",
-    "author": "Superman",
-    "description": "Some kind of description!"
-  }
+        },
+        "Fields": {
+            "title": "A blog post test",
+            "author": "Superman",
+            "description": "Some kind of description!"
+        }
+    }
 }
