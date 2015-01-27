@@ -35,7 +35,8 @@ module.exports = function(grunt) {
         },
         build: {
           files: {
-            'test/result/result.html': 'test/fixtures/source.html'
+            'test/result/result.html': 'test/fixtures/source.html',
+            'test/result/result2.html': 'test/fixtures/source2.html'
           }
         }
     }

@@ -2,5 +2,10 @@
   "testNewsItem": {
     "title": "A testy title",
     "description": "Some kind of lorem ipsum variation"
+  },
+  "blogPost": {
+    "title": "A blog post test",
+    "author": "Superman",
+    "description": "Some kind of description!"
   }
 }
