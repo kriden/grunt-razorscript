@@ -1,9 +1,15 @@
 {
   "testNewsItem": {
+    "Package": {
+      "something": "something dark side"
+    },
     "title": "A testy title",
     "description": "Some kind of lorem ipsum variation"
   },
   "blogPost": {
+    "Package": {
+
+    },
     "title": "A blog post test",
     "author": "Superman",
     "description": "Some kind of description!"

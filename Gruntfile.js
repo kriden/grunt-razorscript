@@ -31,7 +31,9 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     razorscript: {
         options: {
-          models: 'test/fixtures/models.json'
+          models: 'test/fixtures/models.json',
+          helpers: 'test/fixtures/helpers.html',
+          defaults: 'test/fixtures/defaults.html'
         },
         build: {
           files: {
