@@ -1,5 +1,13 @@
 @* model=testNewsItem *@
 <div>
-    <div>Dit is een source HTML</div>
-    <p>@Fields.title</p>
+	<img href="@Package.logo"/>
+	<div class="content">
+	    <h1>@Fields.title</h1>
+	    @foreach(var paragraph in Fields.paragraphs) {
+	    	<div>
+	    		<h3>paragraph.title</h3>
+	    		<p>paragraph.text</p>
+	    	</div>
+	    }
+	</div>
 </div>

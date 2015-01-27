@@ -1,11 +1,18 @@
 {
     "testNewsItem": {
         "Package": {
-            "something": "something dark side"
+            "logo": "/images/logo.png"
         },
         "Fields": {
             "title": "A testy title",
-            "description": "Some kind of lorem ipsum variation"
+            "description": "Some kind of lorem ipsum variation",
+            "paragraphs": [{
+                "title": "paragraph title 1",
+                "text": "paragraph text 1"
+            }, {
+                "title": "paragraph title 2",
+                "text": "paragraph text 2"
+            }]
         }
     },
     "blogPost": {
