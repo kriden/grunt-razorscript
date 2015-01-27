@@ -57,7 +57,7 @@ module.exports = function (grunt) {
 
             // Merge all into one file for processing
             var tmpContent = defaults+contents+helpers;
-            var tmpFile = 'tmp/'+file.src
+            var tmpFile = '.tmp/'+file.src
             grunt.file.write(tmpFile, tmpContent);
 
             // Rendering razor template
