@@ -26,10 +26,12 @@ In your project's Gruntfile, add a section named `razorscript` to the data objec
 grunt.initConfig({
   razorscript: {
     options: {
-      // Task-specific options go here.
+      defaults: '',
+      helpers: '',
+      models: ''
     },
     your_target: {
-      // Target-specific file lists and/or options go here.
+      'resultpage.html': 'sourcepage.html'
     },
   },
 });
@@ -37,17 +39,24 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.defaults
+Type: `Path`
+Default value: ``
 
-A string value that is used to do something with whatever.
+Path to code you want included with every template, commonly used for defining variables that you will be using within every template.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+#### options.helpers
+Type: `Path`
+Default value: ``
+
+Path to a helper function file. These helpers will be included with every template include.
+
+#### options.models
+Type: `Path`
+Default value : ``
+
+Path to a model file, containing all models to be used in your templates.
 
 ### Usage Examples
 
@@ -58,32 +67,36 @@ In this example, the default options are used to do something with whatever. So 
 grunt.initConfig({
   razorscript: {
     options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    your-target: {
+      files: {
+        'dest/default_options': 'src/testing123,
+      },
+    }
   },
 });
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+#### Selecting a model
+
+A model can be selected for each template. This model will be binded to the @model Razor variable for use within templates.
 
 ```js
-grunt.initConfig({
-  razorscript: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+// Model.json example
+{
+  "newsPost": {
+    "title": "My very first news post"
+    "body": "This is my content!! wiiii!!"
+  }
+}
+
 ```
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+```html
+@{ model=newsPost }
+<h1>@model.title</h1>
+<p>@model.body</p>
+```
+
 
 ## Release History
 _(Nothing yet)_

@@ -42,7 +42,6 @@ module.exports = function (grunt) {
         // Process files
         this.files.forEach(function (file) {
             var src = file.src;
-            grunt.log.ok('Processing '+src[0]);
 
             // Fetch model from razor comment
             var contents = grunt.file.read(file.src[0]);
@@ -56,18 +55,17 @@ module.exports = function (grunt) {
             }
 
             // Merge all into one file for processing
-            var tmpContent = defaults+contents+helpers;
+            var tmpContent = defaults+'\n'+contents+'\n'+helpers;
             var tmpFile = '.tmp/'+file.src
             grunt.file.write(tmpFile, tmpContent);
 
             // Rendering razor template
-            grunt.log.ok('Rendering '+tmpFile);
             var razor = require('razorscript');
             var viewEngine = new razor.ViewEngine();
             var destContent = viewEngine.renderView(tmpFile, model);
 
             grunt.file.write(file.dest, destContent);
-            grunt.log.ok('Rendered ' + file.dest);
+            grunt.log.ok('Rendered ' + file.dest +  ' from source: '+ file.src[0]);
         });
     });
 
